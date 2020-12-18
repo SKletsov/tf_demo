@@ -1,0 +1,20 @@
+- hosts: docker
+  become_user: root
+  become: yes
+  roles:
+    - { role:  docker, tags: [docker] }
+
+- hosts: nginx
+  become_user: root
+  become: yes
+  roles:
+    - { role:  nginx, tags: [nginx] }
+
+
+- hosts: database
+  become_user: root
+  become: yes
+  vars_files:
+    - roles/postgresql/vars/Ubuntu-20.yml 
+  roles:
+    - { role:  postgresql, tags: [pg] }

@@ -1,0 +1,14 @@
+---
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Template a file  conf 
+  template:
+    force: yes 
+    src: django.conf
+    dest: /etc/nginx/conf.d/django.conf
+  notify:
+    - nginx
+
